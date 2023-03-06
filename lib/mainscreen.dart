@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/homescreen.dart';
+import 'package:portfolio/profilepage.dart';
+
+import 'signup page.dart';
 
 class mainscreen extends StatefulWidget {
   @override
@@ -68,8 +71,8 @@ class _mainscreenState extends State<mainscreen> {
                         ),
                         validator: (value) {
                           if (value!.isEmpty ||
-                              RegExp(r'^[\w-\.@]{8,15}$').hasMatch(value!))
-                            return "enter correct pass";
+                              !RegExp(r'^[\w-\.@]{8,15}$').hasMatch(value!))
+                            return "password is not valid";
                           else
                             return null;
                         },
@@ -89,7 +92,7 @@ class _mainscreenState extends State<mainscreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => homescreen()),
+                                    builder: (context) => profilepage()),
                               );
                               var _scaffoldKey;
                               _scaffoldKey.currentState!.showSnackBar(snackBar);
@@ -123,7 +126,13 @@ class _mainscreenState extends State<mainscreen> {
                             width: 7,
                           ),
                           TextButton(
-                              onPressed: null,
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => signup()),
+                                );
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: Text(
@@ -134,6 +143,7 @@ class _mainscreenState extends State<mainscreen> {
                                     color: Colors.black,
                                   ),
                                 ),
+                                // child:
                               ))
                         ],
                       ),
